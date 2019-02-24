@@ -6,12 +6,7 @@ const app = express();
 
 const db = require('./config/keys').mongoURI;
 
-// Connect to MongoDB
-// mongoose
-//   .connect(db)
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
-
+//  Mongoose is the library that supports the data modeling for MongoDB. I imported Mongoose at the top of the application and use the below script to connect to the db
 mongoose
    .connect(db, { useNewUrlParser: true })
    .then(() => console.log("MongoDB is connected"))
