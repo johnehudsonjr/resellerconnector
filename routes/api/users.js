@@ -8,6 +8,7 @@ const passport = require('passport')
 // This is used to encrypt the password
 const bcrypt = require('bcryptjs')
 
+const validateRegisterInput = require('../../validation/register')
 
 // Load User Model
 const User = require('../../models/User')
@@ -24,6 +25,14 @@ router.get('/test', (req, res) => res.json({msg: "Users Works"})
 // @access  Public
 
 router.post('/register', (req,res) =>{
+   // This checks the rules against what was created
+   const{errors, isValid} = validateRegisterInput(req.body);
+
+   // Check Validation
+   if(!isValid){
+      return res.status(400).json(errors)
+   }
+
    // This allows us to look for a record for one usere a user is trying to register with
    User.findOne({email: req.body.email})
       .then(user => {
