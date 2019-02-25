@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const passport = require('passport');
 
 const users = require('./routes/api/users')
 const profile = require('./routes/api/profile')
@@ -22,7 +23,14 @@ mongoose
    .catch(err => console.log(err));
 
 
-app.get('/', (req, res)=> res.send('Hello John, this is  from your server!'));
+// app.get('/', (req, res)=> res.send('Hello John, this is  from your server!'));
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport Config
+require('./config/passport')(passport);
+
 
 // use routes EX. When a user types in this url (___/api/users) it will go to to the users page in api folder and run what is called in that folder.
 
