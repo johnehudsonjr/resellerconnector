@@ -23,7 +23,7 @@
          errors.email = 'Email field is required';
       }
 
-      if(Validator.isEmail(data.email)){
+      if(!Validator.isEmail(data.email)){
          errors.email = 'Email is invalid.';
       }
 
@@ -39,7 +39,7 @@
          errors.password = 'Confirm password field is required';
       }
 
-      if(Validator.equals(data.password, data.password2)){
+      if(!Validator.equals(data.password, data.password2)){
          errors.password2 = 'Passwords must match';
       }
      
