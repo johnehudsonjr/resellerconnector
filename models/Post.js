@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const PostSchema = new Schema({
+   // User associated with the post
    user: {
       type: Schema.Types.ObjectId,
       ref:'users'
@@ -19,6 +20,8 @@ const PostSchema = new Schema({
    avatar: {
       type: String
    },
+   
+   // Array of user likes
    likes: [
       {
          user: {
@@ -28,6 +31,8 @@ const PostSchema = new Schema({
          }
       }
    ],
+
+   // Array of user comments
    comments: [
       {
          user: {
@@ -50,6 +55,7 @@ const PostSchema = new Schema({
          }
       }
    ],
+   // Post Date
    date:{
       type: Date,
       default: Date.now
