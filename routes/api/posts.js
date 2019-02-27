@@ -21,6 +21,15 @@ router.get('/test', (req, res) => res.json({msg: "Posts Works"})
 // @access  Private
 
 router.post('/', passport.authenticate('jwt', {session:false}), (req,res)=>{
+
+   const{errors, isValid} = validatePostInput(req.body);
+
+   // check validation
+   if(!isValid){
+      // If there are errors, send 400 with errors object
+      return res.status(400).json(errors);
+   }
+
    const newPost = new Post({
       text: req.body.text,
       name: req.body.name,
